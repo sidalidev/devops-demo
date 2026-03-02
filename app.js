@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000
 app.use(express.json())
 
 // Route principale
-app.get('/', (req, res) => {
+app.get('/', (req, res) => {asdfadfsadf
   res.json({ message: 'Bienvenue sur l\'API DevOps Demo' })
 })
 
