@@ -5,14 +5,17 @@ WORKDIR /app
 # Copier les fichiers de dépendances
 COPY package*.json ./
 
-# Installer les dépendances de production uniquement
-RUN npm ci --only=production
+# Installer les dépendances
+RUN npm ci
 
 # Copier le code
 COPY . .
 
+# Générer le client Prisma
+RUN npx prisma generate
+
 # Port exposé
 EXPOSE 3000
 
-# Démarrer l'app
-CMD ["npm", "start"]
+# Migrer la BDD et démarrer l'app
+CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
